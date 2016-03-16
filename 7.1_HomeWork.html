@@ -1,0 +1,37 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт. При клике на ссылку див пропадает, если повторно нажать ссылку див и текст должны вернуться. Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ 	<style>
+ 		div{
+ 			border: 1px solid black;
+ 		}
+ 		.hide{
+ 			display: none;
+ 		}
+ 	</style>
+ </head>
+ <body> 	
+	<a id="controlLink" href="#">Here is a link
+		<div id="hi" class="hide">!!!Hidden text!!!</div><br>
+	</a>
+	<input id="cancel" type="button" value="Cancel action" name="button1">
+	<script>
+		var someLink = document.querySelector("a");
+		someLink.addEventListener("click", SampleForHide);
+		function SampleForHide(e) {
+			someLink.children[0].classList.toggle("hide");
+			e.preventDefault();
+		}
+		var someButton = document.querySelector("#cancel");
+		someButton.addEventListener("click", CancelAction)
+		function CancelAction() {
+			someLink.removeEventListener("click", SampleForHide);
+		}
+	</script>
+ </body>
+ </html>

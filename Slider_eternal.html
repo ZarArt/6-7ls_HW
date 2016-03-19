@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	div{
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+	}
+	ul{
+		padding: 0;
+		list-style: none;
+		position: relative;
+	}
+	li{
+		width: 200px;
+		height: 200px;
+		float: left;
+	}
+</style>
+<body>
+	<div>
+		<ul>
+			<li style="background: red">1</li>
+			<li style="background: green">2</li>
+			<li style="background: orange">3</li>
+			<li style="background: blue">4</li>
+			<li style="background: yellow">5</li>
+		</ul>
+	</div>
+	<div id="divWithSpans">
+		<span id="prev" data-attr="prev">Previous color</span>
+		<span id="next"  data-attr="next">Next color</span>
+	</div>		
+	<script>
+		var list = document.querySelector("ul");
+		var elements = list.children.length + 1;
+		var widthUl = elements*200;
+
+		function reset() {
+			list.style.cssText = "left: 0px; width:" + widthUl + "px";
+		};
+
+		var divWithSpans = document.querySelector("#divWithSpans");
+		divWithSpans.addEventListener("click", GetCurrentSpan);
+		function GetCurrentSpan(e) {
+			var target = e.target;
+			var attr = target.getAttribute("data-attr");
+			if (attr == "next") {
+				var cloning = list.firstElementChild;
+				var cloned = cloning.cloneNode(true);
+				list.appendChild(cloned);
+				list.style.cssText += "left: -200px";
+				list.removeChild(cloning);
+				reset();
+			}
+			else{
+				if (attr == "prev"){
+					var cloning = list.lastElementChild;
+					var cloned = cloning.cloneNode(true);
+					list.insertBefore(cloned, list.firstElementChild);
+					list.style.cssText += "left: 200px";
+					list.removeChild(cloning);
+					reset();
+				}
+				else{
+					return;
+				}
+			}
+		};
+	</script>
+

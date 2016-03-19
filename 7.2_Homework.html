@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Homework</title>
+    <style>
+		div{
+			border: 1px solid orange;
+			padding: 10px;
+			margin: 10px 0;
+		}
+    </style>
 </head>
 <body>
     <!-- Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления. Используйте только один обработчик. -->
     <!-- Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы, подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener -->
+    <div id="parent">
+    	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus ea fugit tenetur, sint ipsa in quae quaerat perspiciatis fuga dicta vitae minima consequuntur molestias officia, deserunt culpa nesciunt veniam!<br>
+    	<input type="button" value="Hide"></input>
+    	</div>
+    	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda repellendus voluptatibus magnam sit vitae. Ut recusandae minus ipsum, cumque molestiae aut dolore, libero provident sapiente expedita voluptate veritatis! Maiores, ducimus!<br>
+    	<input type="button" value="Hide"></input>		
+    	</div>
+    	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut maxime, totam. Necessitatibus accusamus, mollitia quaerat repudiandae asperiores odit aliquam vel libero nobis! Velit aut nemo porro rerum odit hic, minus.<br>
+    	<input type="button" value="Hide"></input></div>
+    	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat esse error sed maxime ex perspiciatis odit maiores dolorem. Distinctio laborum sequi quis tenetur doloremque voluptatibus ipsam magni ex voluptas modi.<br>
+    	<input type="button" value="Hide"></input></div>
+    	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat architecto consectetur esse optio inventore molestias dolor, quo laborum, nobis expedita consequatur deleniti in modi accusantium, perferendis, dolores. Tempore, dolorem aliquid.<br>
+    	<input type="button" value="Hide"></input></div>
+    </div>
+    <input type="button" id="rB" value="Cancel hide"></input>
+    <script>
+    	var parentDiv = document.getElementById("parent");
+    	parentDiv.addEventListener("click", HideDiv);
+    	function HideDiv (e) {
+    		var target = e.target;
+    		this.removeChild(target.parentNode);
+     	}
+     	var removeBut = document.getElementById("rB");
+     	removeBut.addEventListener("click", CancelHide);
+     	function CancelHide() {
+     		parentDiv.removeEventListener("click", HideDiv);
+     	}
+    </script>
 </body>
 </html>
